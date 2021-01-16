@@ -17,3 +17,5 @@ services:
       - 8082:80
     depends_on: 
       - postgres
+    environment: 
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
