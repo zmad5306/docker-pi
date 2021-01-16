@@ -59,6 +59,10 @@ POSTGRES_PASSWORD=******** docker-compose up -d
 | `/media/Storage/nextcloud/data` | `/data` | Main data store. |
 | `/media/Storage/nextcloud/html` | `/var/www/html` | Web server content. |
 
+### Utilities
+
+Scan folders after bulk load of data: `docker exec --user www-data nextcloud php occ files:scan --all`
+
 
 
 ## Resources
