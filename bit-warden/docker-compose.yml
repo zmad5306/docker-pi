@@ -9,6 +9,6 @@ services:
     ports: 
       - 8080:80
     volumes: 
-      - /bw-data:/data
+      - /media/Storage/bw-data:/data
       - /etc/ssl/certs:/ssl
 
