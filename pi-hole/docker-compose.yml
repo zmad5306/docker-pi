@@ -12,8 +12,8 @@ services:
       - 8081:80
       - 8443:443
     volumes: 
-      - pihole:/pi-hole-data/etc-pihole/:/etc/pihole/
-      - dnsmasq:/pi-hole-data/etc-dnsmasq.d/:/etc/dnsmasq.d/
+      - /pi-hole-data/etc-pihole/:/etc/pihole/
+      - /pi-hole-data/etc-dnsmasq.d/:/etc/dnsmasq.d/
     dns: 
       - 127.0.0.1
       - 1.1.1.1
