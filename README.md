@@ -39,7 +39,7 @@ docker-compose up -d
 
 | Path on Host | Path on Container | Description |
 | --- | --- | --- |
-| `/bw-data` | `/data` | Bitwarden data files and database. |
+| `/media/Storage/bw-data` | `/data` | Bitwarden data files and database. |
 | `/etc/ssl/certs` | `/ssl` | Maps the host's default ssl certificate directory into the container. [Certificate created for Bitwarden](https://github.com/dani-garcia/bitwarden_rs/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome) is stored here. |
 
 ## nextcloud
