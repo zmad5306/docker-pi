@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     volumes:
       - /media/Storage/nextcloud/db:/var/lib/postgresql/data
+    environment: 
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
   nextcloud:
     image: nextcloud
     container_name: nextcloud
@@ -17,5 +19,3 @@ services:
       - 8082:80
     depends_on: 
       - postgres
-    environment: 
-      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
