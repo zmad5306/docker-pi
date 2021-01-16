@@ -4,7 +4,12 @@ Docker compose files and notes for my PI.
 
 ## pi-hole
 
-Docker compose files for pi-hole.
+Docker compose files for pi-hole. To run:
+
+```#!/bin/bash
+cd pi-hole
+docker-compose up -d
+````
 
 ### Setting admin password
 
