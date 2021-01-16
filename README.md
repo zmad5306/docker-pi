@@ -33,7 +33,7 @@ Docker compose files for Bitwarden. To run:
 ```#!/bin/bash
 cd bit-warden
 docker-compose up -d
-````
+```
 
 ### Volumes
 
