@@ -3,7 +3,7 @@ services:
   pihole:
     image: pihole/pihole:latest
     container_name: pihole
-    restart: always
+    restart: unless-stopped
     environment: 
       - TZ="America/New_York"
     ports: 
