@@ -14,5 +14,5 @@ services:
       - /media/Storage/nextcloud/data:/data
       - /media/Storage/nextcloud/html:/var/www/html
     ports: 
-      8082:80
+      - 8082:80
     depends_on: postgres

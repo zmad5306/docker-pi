@@ -47,8 +47,8 @@ docker-compose up -d
 Docker compose files for Bitwarden. To run:
 
 ```#!/bin/bash
-cd bit-warden
-docker-compose up -d -e POSTGRES_PASSWORD=********
+cd nextcloud
+POSTGRES_PASSWORD=******** docker-compose up -d
 ```
 
 ### Volumes
