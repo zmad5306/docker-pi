@@ -1,0 +1,13 @@
+version: '3'
+services: 
+  bitwarden:
+    image: bitwardenrs/server:latest
+    container_name: bitwarden
+    restart: unless-stopped
+  ports: 
+    - 8080:80
+  volumes: 
+    - /bw-data:/data
+    - /etc/ssl/certs:/ssl
+  environment: 
+    - ROCKET_TLS='{certs="/ssl/bitwarden.crt",key="/ssl/bitwarden.key"}'
