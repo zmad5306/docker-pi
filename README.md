@@ -105,9 +105,6 @@ docker-compose up -d
 | `/media/Storage/Zach/Music` | `/data/audio/music` | Music. |
 | `/media/Storage/Zach/Podcasts` | `/data/audio/podcasts` | Podcasts. |
 
-
-
-
 ## Resources
 
 * [Install docker](https://www.youtube.com/watch?v=eCJA1F72izc)
