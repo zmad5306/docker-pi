@@ -65,7 +65,7 @@ Scan folders after bulk load of data: `docker exec --user www-data nextcloud php
 
 ## Plex
 
-Docker comose files for Plex Mediaserver. To run:
+Docker compose files for Plex Mediaserver. To run:
 
 ```#!/bin/bash
 cd plex
@@ -84,6 +84,29 @@ docker-compose up -d
 | `/media/Storage/Video/YouTube` | `/data/video/youtube` | YouTube videos. |
 | `/media/Storage/Zach/Music` | `/data/audio/music` | Music. |
 | `/media/Storage/Zach/Podcasts` | `/data/audio/podcasts` | Podcasts. |
+
+## Emby
+
+Docker compose files for Emby media server. To run:
+```#!/bin/bash
+cd emby
+docker-compose up -d
+```
+### Volumes
+
+| Path on Host | Path on Container | Description |
+| --- | --- | --- |
+| `/media/Storage/emby/config` | `/config` | Plex Mediaserver configuration. |
+| `/media/Storage/Video/Exercise` | `/data/video/exercise` | Exercise videos. |
+| `/media/Storage/Video/KidsMovies` | `/data/video/kidsmovies` | Kids movies. |
+| `/media/Storage/Video/Movies` | `/data/video/movies` | Movies. |
+| `/media/Storage/Video/TV` | `/data/video/tv` | TV shows. |
+| `/media/Storage/Video/YouTube` | `/data/video/youtube` | YouTube videos. |
+| `/media/Storage/Zach/Music` | `/data/audio/music` | Music. |
+| `/media/Storage/Zach/Podcasts` | `/data/audio/podcasts` | Podcasts. |
+
+
+
 
 ## Resources
 

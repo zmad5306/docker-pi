@@ -1,0 +1,19 @@
+version: '3'
+services: 
+  plex:
+    image: emby/embyserver_arm32v7:latest
+    container_name: emby
+    restart: unless-stopped
+    volumes: 
+      - /media/Storage/emby/config:/config
+      - /media/Storage/Video/Exercise:/data/video/exercise
+      - /media/Storage/Video/KidsMovies:/data/video/kidsmovies
+      - /media/Storage/Video/Movies:/data/video/movies
+      - /media/Storage/Video/TV:/data/video/tv
+      - /media/Storage/Video/YouTube:/data/video/youtube
+      - /media/Storage/Zach/Music:/data/audio/music
+      - /media/Storage/Zach/Podcasts:/data/audio/podcasts
+    ports: 
+      - 8096:8096
+      - 8920:8920
+      - 1900:1900/udp
