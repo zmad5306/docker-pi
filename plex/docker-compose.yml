@@ -1,11 +1,11 @@
 version: '3'
 services: 
   plex:
-    image: linuxserver/plex
+    image: linuxserver/plex:arm64v8-latest
     container_name: plex
     restart: unless-stopped
     environment: 
-      - VERSION=latest
+      - VERSION=docker
       - PUID=1000
       - PGID=1000
       - TZ="America/New_York"
