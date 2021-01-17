@@ -18,5 +18,4 @@ services:
       - /media/Storage/Video/YouTube:/data/video/youtube
       - /media/Storage/Zach/Music:/data/audio/music
       - /media/Storage/Zach/Podcasts:/data/audio/podcasts
-    networks: 
-      - host
+    network_mode: host
