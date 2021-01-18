@@ -5,8 +5,8 @@ services:
     container_name: collabora
     restart: unless-stopped
     environment:
-      - username="admin"
+      - username=admin
       - password=$COLLABORA_PASSWORD
-      - domain="collabora.local"
+      - domain=192.168.254.249
     ports: 
       - 127.0.0.1:9980:9980
