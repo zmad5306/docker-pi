@@ -7,5 +7,6 @@ services:
     environment:
       - username="admin"
       - password=$COLLABORA_PASSWORD
+      - domain="collabora.local"
     ports: 
-      - 9980:9980
+      - 127.0.0.1:9980:9980
