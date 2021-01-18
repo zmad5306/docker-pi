@@ -48,7 +48,7 @@ Docker compose files for Bitwarden. To run:
 
 ```#!/bin/bash
 cd nextcloud
-POSTGRES_PASSWORD=******** docker-compose up -d
+POSTGRES_PASSWORD=******** COLLABORA_PASSWORD=******** docker-compose up -d
 ```
 
 ### Volumes
