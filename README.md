@@ -48,7 +48,7 @@ Docker compose files for Bitwarden. To run:
 
 ```#!/bin/bash
 cd nextcloud
-POSTGRES_PASSWORD=******** COLLABORA_PASSWORD=******** docker-compose up -d
+POSTGRES_PASSWORD=******** docker-compose up -d
 ```
 
 ### Volumes
@@ -104,6 +104,15 @@ docker-compose up -d
 | `/media/Storage/Video/YouTube` | `/data/video/youtube` | YouTube videos. |
 | `/media/Storage/Zach/Music` | `/data/audio/music` | Music. |
 | `/media/Storage/Zach/Podcasts` | `/data/audio/podcasts` | Podcasts. |
+
+## Collabora Office
+
+Docker compose files for Collabora Office. To run:
+
+```#!/bin/bash
+cd collabora
+COLLABORA_PASSWORD=******** docker-compose up -d
+```
 
 ## Resources
 

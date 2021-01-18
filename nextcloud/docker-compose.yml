@@ -19,12 +19,3 @@ services:
       - 8082:80
     depends_on: 
       - postgres
-  collabora:
-    image: collabora/code
-    container_name: collabora
-    restart: unless-stopped
-    environment:
-      - username="admin"
-      - password=$COLLABORA_PASSWORD
-    ports: 
-      - 9980:9980
