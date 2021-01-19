@@ -105,14 +105,23 @@ docker-compose up -d
 | `/media/Storage/Zach/Music` | `/data/audio/music` | Music. |
 | `/media/Storage/Zach/Podcasts` | `/data/audio/podcasts` | Podcasts. |
 
-## Collabora Office
+## Only Office
 
-Docker compose files for Collabora Office. To run:
+Docker compose files for Only Office. To run:
 
 ```#!/bin/bash
-cd collabora
-COLLABORA_PASSWORD=******** docker-compose up -d
+cd only-office
+docker-compose up -d
 ```
+
+### Volumes
+
+| Path on Host | Path on Container | Description |
+| --- | --- | --- |
+| `/media/Storage/only-office/logs` | `/var/log/onlyoffice` | Only Office logs. |
+| `/media/Storage/only-office/data` | `/var/www/onlyoffice/Data` | Only Office data. |
+| `/media/Storage/only-office/lib` | `/var/lib/onlyoffice` | Only Office software and libs. |
+| `/media/Storage/only-office/db` | `/var/lib/postgresql` | Only Office database. |
 
 ## Resources
 
