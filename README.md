@@ -105,24 +105,6 @@ docker-compose up -d
 | `/media/Storage/Zach/Music` | `/data/audio/music` | Music. |
 | `/media/Storage/Zach/Podcasts` | `/data/audio/podcasts` | Podcasts. |
 
-## Only Office
-
-Docker compose files for Only Office. To run:
-
-```#!/bin/bash
-cd only-office
-docker-compose up -d
-```
-
-### Volumes
-
-| Path on Host | Path on Container | Description |
-| --- | --- | --- |
-| `/media/Storage/only-office/logs` | `/var/log/onlyoffice` | Only Office logs. |
-| `/media/Storage/only-office/data` | `/var/www/onlyoffice/Data` | Only Office data. |
-| `/media/Storage/only-office/lib` | `/var/lib/onlyoffice` | Only Office software and libs. |
-| `/media/Storage/only-office/db` | `/var/lib/postgresql` | Only Office database. |
-
 ## Resources
 
 * [Install docker](https://www.youtube.com/watch?v=eCJA1F72izc)
