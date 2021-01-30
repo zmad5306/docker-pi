@@ -3,8 +3,7 @@ FROM debian:buster
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     ffmpeg \
-    sudo \
-    wget \
+    inotify-tools \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 #RUN apk update
