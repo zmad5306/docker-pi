@@ -66,6 +66,7 @@ Scan folders after bulk load of data: `docker exec --user www-data nextcloud php
 ## Emby
 
 Docker compose files for Emby media server. To run:
+
 ```#!/bin/bash
 cd emby
 docker-compose up -d
@@ -82,6 +83,28 @@ docker-compose up -d
 | `/media/Storage/Video/YouTube` | `/data/video/youtube` | YouTube videos. |
 | `/media/Storage/Zach/Music` | `/data/audio/music` | Music. |
 | `/media/Storage/Zach/Podcasts` | `/data/audio/podcasts` | Podcasts. |
+
+## ffmpeg
+
+Docker image and docker compose to convert videos to mkv format. To build and push image:
+
+```#!/bin/bash
+cd ffmpeg
+docker build -t video_converter .
+```
+
+To run:
+
+```#!/bin/bash
+cd ffmpeg
+docker-compose up -d
+```
+
+Run with docker:
+
+```#!/bin/bash
+docker run -v /media/Storage/Video/YouTube/Movies/NewPipe:/vids video_converter:latest
+```
 
 ## Resources
 
