@@ -1,7 +1,7 @@
 version: '3'
 services: 
   postgres: 
-    image: zmad5306/video-converter
+    image: zmad5306/video-converter:latest
     container_name: video-converter
     restart: unless-stopped
     volumes:
