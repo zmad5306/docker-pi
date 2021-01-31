@@ -1,0 +1,8 @@
+version: '3'
+services: 
+  postgres: 
+    image: video_converter
+    container_name: video_converter
+    restart: unless-stopped
+    volumes:
+      - /media/Storage/Video/YouTube/Movies/NewPipe:/vids
