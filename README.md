@@ -86,24 +86,11 @@ docker-compose up -d
 
 ## ffmpeg
 
-Docker image and docker compose to convert videos to mkv format. To build and push image:
-
-```#!/bin/bash
-cd ffmpeg
-docker build -t video_converter .
-```
-
 To run:
 
 ```#!/bin/bash
 cd ffmpeg
 docker-compose up -d
-```
-
-Run with docker:
-
-```#!/bin/bash
-docker run -v /media/Storage/Video/YouTube/Movies/NewPipe:/vids video_converter:latest
 ```
 
 ## Resources
