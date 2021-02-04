@@ -63,6 +63,13 @@ POSTGRES_PASSWORD=******** docker-compose up -d
 
 Scan folders after bulk load of data: `docker exec --user www-data nextcloud php occ files:scan --all`
 
+### Protonmail Bridge
+
+First run needs to be started with `docker run --rm -it -v /media/Storage/protonmail:/root shenxn/protonmail-bridge:1.4.5-build init` this starts the CLI so the bridge can be confgured. See:
+
+- [ProtonMail IMAP/SMTP Bridge Docker Container](https://github.com/shenxn/protonmail-bridge-docker)
+- [Bridge CLI (command line interface) guide](https://protonmail.com/support/knowledge-base/bridge-cli-guide/)
+
 ## Emby
 
 Docker compose files for Emby media server. To run:
@@ -92,22 +99,6 @@ To run:
 cd ffmpeg
 docker-compose up -d
 ```
-
-## protonmail-bridge
-
-Docker compose files for Protonmail Bridge. To run:
-
-```#!/bin/bash
-cd protonmail-bridge
-docker-compose up -d
-```
-
-### Notes
-
-First run needs to be started with `docker run --rm -it -v /media/Storage/protonmail:/root shenxn/protonmail-bridge:1.4.5-build init` this starts the CLI so the bridge can be confgured. See:
-
-- [ProtonMail IMAP/SMTP Bridge Docker Container](https://github.com/shenxn/protonmail-bridge-docker)
-- [Bridge CLI (command line interface) guide](https://protonmail.com/support/knowledge-base/bridge-cli-guide/)
 
 ### Volumes
 
