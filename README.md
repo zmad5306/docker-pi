@@ -75,7 +75,7 @@ docker-compose up -d
 
 | Path on Host | Path on Container | Description |
 | --- | --- | --- |
-| `/media/Storage/emby/config` | `/config` | Plex Mediaserver configuration. |
+| `/media/Storage/emby/config` | `/config` | Emby Mediaserver configuration. |
 | `/media/Storage/Video/Exercise` | `/data/video/exercise` | Exercise videos. |
 | `/media/Storage/Video/KidsMovies` | `/data/video/kidsmovies` | Kids movies. |
 | `/media/Storage/Video/Movies` | `/data/video/movies` | Movies. |
@@ -92,6 +92,20 @@ To run:
 cd ffmpeg
 docker-compose up -d
 ```
+
+## protonmail-bridge
+
+Docker compose files for Protonmail Bridge. To run:
+
+```#!/bin/bash
+cd protonmail-bridge
+docker-compose up -d
+```
+### Volumes
+
+| Path on Host | Path on Container | Description |
+| --- | --- | --- |
+| `/media/Storage/protonmail` | `/root` | Configuration for Protonmail bridge. |
 
 ## Resources
 
