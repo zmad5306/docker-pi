@@ -101,6 +101,14 @@ Docker compose files for Protonmail Bridge. To run:
 cd protonmail-bridge
 docker-compose up -d
 ```
+
+### Notes
+
+First run needs to be started with `docker run --rm -it -v /media/Storage/protonmail:/root shenxn/protonmail-bridge:1.4.5-build init` this starts the CLI so the bridge can be confgured. See:
+
+- [ProtonMail IMAP/SMTP Bridge Docker Container](https://github.com/shenxn/protonmail-bridge-docker)
+- [Bridge CLI (command line interface) guide](https://protonmail.com/support/knowledge-base/bridge-cli-guide/)
+
 ### Volumes
 
 | Path on Host | Path on Container | Description |
