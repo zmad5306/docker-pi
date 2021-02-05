@@ -112,3 +112,63 @@ docker-compose up -d
 * [Install docker compose](https://devdojo.com/bobbyiliev/how-to-install-docker-and-docker-compose-on-raspberry-pi)
 * [Create Bitwarden SSL Certificate](https://github.com/dani-garcia/bitwarden_rs/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome)
 * [Install Nextcloud](https://www.youtube.com/watch?v=CHWHQFwxFcE)
+
+## System
+
+### Backups
+
+#### Bitwarden
+
+```#!/bin/bash
+sudo tar -cvpzf /media/Storage/bitwarden-backup.tar.gz --one-file-system /media/Storage/bw-data
+sudo tar -xvpzf /media/Storage/bitwarden-backup.tar.gz -C /media/Storage/bw-data --numeric-owner
+```
+
+#### Music
+
+```#!/bin/bash
+sudo tar -cvpzf /media/Storage/music-backup.tar.gz --one-file-system /media/Storage/Music
+sudo tar -xvpzf /media/Storage/music-backup.tar.gz -C /media/Storage/Music --numeric-owner
+```
+
+#### Nextcloud
+
+```#!/bin/bash
+sudo tar -cvpzf /media/Storage/nextcloud-backup.tar.gz --one-file-system /media/Storage/nextcloud
+sudo tar -xvpzf /media/Storage/nextcloud-backup.tar.gz -C /media/Storage/nextcloud --numeric-owner
+```
+
+#### Protonmail
+
+```#!/bin/bash
+sudo tar -cvpzf /media/Storage/protonmail-backup.tar.gz --one-file-system /media/Storage/protonmail
+sudo tar -xvpzf /media/Storage/protonmail-backup.tar.gz -C /media/Storage/protonmail --numeric-owner
+```
+
+#### Emby
+
+```#!/bin/bash
+sudo tar -cvpzf /media/Storage/emby-backup.tar.gz --one-file-system /media/Storage/emby
+sudo tar -xvpzf /media/Storage/emby-backup.tar.gz -C /media/Storage/emby --numeric-owner
+```
+
+#### Dropbox
+
+```#!/bin/bash
+sudo tar -cvpzf /media/Storage/dropbox-backup.tar.gz --one-file-system /media/Storage/Dropbox
+sudo tar -xvpzf /media/Storage/dropbox-backup.tar.gz -C /media/Storage/Dropbox --numeric-owner
+```
+
+#### Podcasts
+
+```#!/bin/bash
+sudo tar -cvpzf /media/Storage/podcasts-backup.tar.gz --one-file-system /media/Storage/Podcasts
+sudo tar -xvpzf /media/Storage/podcasts-backup.tar.gz -C /media/Storage/Podcasts --numeric-owner
+```
+
+#### System
+
+```#!/bin/bash
+sudo tar -cvpzf /media/Storage/system-backup.tar.gz --exclude=/media/* --one-file-system /
+sudo tar -xvpzf /media/Storage/system-backup.tar.gz -C / --numeric-owner
+```
