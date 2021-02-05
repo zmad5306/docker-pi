@@ -88,8 +88,8 @@ docker-compose up -d
 | `/media/Storage/Video/Movies` | `/data/video/movies` | Movies. |
 | `/media/Storage/Video/TV` | `/data/video/tv` | TV shows. |
 | `/media/Storage/Video/YouTube` | `/data/video/youtube` | YouTube videos. |
-| `/media/Storage/Zach/Music` | `/data/audio/music` | Music. |
-| `/media/Storage/Zach/Podcasts` | `/data/audio/podcasts` | Podcasts. |
+| `/media/Storage/Music` | `/data/audio/music` | Music. |
+| `/media/Storage/Podcasts` | `/data/audio/podcasts` | Podcasts. |
 
 ## ffmpeg
 

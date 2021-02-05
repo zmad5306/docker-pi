@@ -11,8 +11,8 @@ services:
       - /media/Storage/Video/Movies:/data/video/movies
       - /media/Storage/Video/TV:/data/video/tv
       - /media/Storage/Video/YouTube:/data/video/youtube
-      - /media/Storage/Zach/Music:/data/audio/music
-      - /media/Storage/Zach/Podcasts:/data/audio/podcasts
+      - /media/Storage/Music:/data/audio/music
+      - /media/Storage/Podcasts:/data/audio/podcasts
     ports: 
       - 8096:8096
       - 8920:8920
