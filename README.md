@@ -58,12 +58,15 @@ POSTGRES_PASSWORD=******** docker-compose up -d
 | `/media/Storage/nextcloud/db` | `/var/lib/postgresql/data` | Postgres database. |
 | `/media/Storage/nextcloud/data` | `/data` | Main data store. |
 | `/media/Storage/nextcloud/html` | `/var/www/html` | Web server content. |
+| `/media/Storage/protonmail` | `/root` | Storage for Protonmail Bridge config. |
 
 ### Utilities
 
 Scan folders after bulk load of data: `docker exec --user www-data nextcloud php occ files:scan --all`
 
 ### Protonmail Bridge
+
+Used to integrate mail (SMTP) with Nextcloud.
 
 First run needs to be started with `docker run --rm -it -v /media/Storage/protonmail:/root shenxn/protonmail-bridge:1.4.5-build init` this starts the CLI so the bridge can be confgured. See:
 
@@ -91,12 +94,12 @@ docker-compose up -d
 | `/media/Storage/Music` | `/data/audio/music` | Music. |
 | `/media/Storage/Podcasts` | `/data/audio/podcasts` | Podcasts. |
 
-## ffmpeg
+## Video Converter
 
 To run:
 
 ```#!/bin/bash
-cd ffmpeg
+cd video-converter
 docker-compose up -d
 ```
 
@@ -104,7 +107,7 @@ docker-compose up -d
 
 | Path on Host | Path on Container | Description |
 | --- | --- | --- |
-| `/media/Storage/protonmail` | `/root` | Configuration for Protonmail bridge. |
+| `/media/Storage/Video/YouTube/Movies/NewPipe` | `/vids` | The volume to monitor. |
 
 ## Resources
 
@@ -113,11 +116,11 @@ docker-compose up -d
 * [Create Bitwarden SSL Certificate](https://github.com/dani-garcia/bitwarden_rs/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome)
 * [Install Nextcloud](https://www.youtube.com/watch?v=CHWHQFwxFcE)
 
-## System
-
 ### Backups
 
-Mount backup drive:
+Backup instructions for PI host.
+
+#### Mount backup drive
 
 ```#!/bin/bash
 sudo mount -t auto /dev/sdb1 /media/Backup1
