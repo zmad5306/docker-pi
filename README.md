@@ -120,55 +120,79 @@ docker-compose up -d
 #### Bitwarden
 
 ```#!/bin/bash
+#backup
 sudo tar -cvpzf /media/Storage/bitwarden-backup.tar.gz --one-file-system /media/Storage/bw-data
+
+#restore
 sudo tar -xvpzf /media/Storage/bitwarden-backup.tar.gz -C /media/Storage/bw-data --numeric-owner
 ```
 
 #### Music
 
 ```#!/bin/bash
+#backup
 sudo tar -cvpzf /media/Storage/music-backup.tar.gz --one-file-system /media/Storage/Music
+
+#restore
 sudo tar -xvpzf /media/Storage/music-backup.tar.gz -C /media/Storage/Music --numeric-owner
 ```
 
 #### Nextcloud
 
 ```#!/bin/bash
+#backup
 sudo tar -cvpzf /media/Storage/nextcloud-backup.tar.gz --one-file-system /media/Storage/nextcloud
+
+#restore
 sudo tar -xvpzf /media/Storage/nextcloud-backup.tar.gz -C /media/Storage/nextcloud --numeric-owner
 ```
 
 #### Protonmail
 
 ```#!/bin/bash
+#backup
 sudo tar -cvpzf /media/Storage/protonmail-backup.tar.gz --one-file-system /media/Storage/protonmail
+
+#restore
 sudo tar -xvpzf /media/Storage/protonmail-backup.tar.gz -C /media/Storage/protonmail --numeric-owner
 ```
 
 #### Emby
 
 ```#!/bin/bash
+#backup
 sudo tar -cvpzf /media/Storage/emby-backup.tar.gz --one-file-system /media/Storage/emby
+
+#restore
 sudo tar -xvpzf /media/Storage/emby-backup.tar.gz -C /media/Storage/emby --numeric-owner
 ```
 
 #### Dropbox
 
 ```#!/bin/bash
+#backup
 sudo tar -cvpzf /media/Storage/dropbox-backup.tar.gz --one-file-system /media/Storage/Dropbox
+
+#restore
 sudo tar -xvpzf /media/Storage/dropbox-backup.tar.gz -C /media/Storage/Dropbox --numeric-owner
 ```
 
 #### Podcasts
 
 ```#!/bin/bash
+#backup
 sudo tar -cvpzf /media/Storage/podcasts-backup.tar.gz --one-file-system /media/Storage/Podcasts
+
+#restore
 sudo tar -xvpzf /media/Storage/podcasts-backup.tar.gz -C /media/Storage/Podcasts --numeric-owner
 ```
 
 #### System
 
 ```#!/bin/bash
+#backup
 sudo tar -cvpzf /media/Storage/system-backup.tar.gz --exclude=/media/* --one-file-system /
+
+#restore
 sudo tar -xvpzf /media/Storage/system-backup.tar.gz -C / --numeric-owner
 ```
