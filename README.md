@@ -165,14 +165,14 @@ sudo rsync -rvh /media/Storage/Dropbox /media/Backup1
 sudo rsync -rvh /media/Storage/Podcasts /media/Backup1
 ```
 
-#### System
-
-```#!/bin/bash
-sudo rsync -rvh --exclude 'media' / /media/Backup1/System
-```
-
 #### Pi-Hole
 
 ```#!/bin/bash
 sudo rsync -rvh /media/Storage/pi-hole-data /media/Backup1
+```
+
+#### SAMBA
+
+```#!/bin/bash
+sudo cp /etc/samba/smb.conf /media/Backup1/samba/smb.conf
 ```
