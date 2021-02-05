@@ -21,8 +21,8 @@ docker exec -it pihole pihole -a -p ********
 
 | Path on Host | Path on Container | Description |
 | --- | --- | --- |
-| `/pi-hole-data/etc-pihole` | `/etc/pihole` | Data storeage for pi-hole, config, etc. |
-| `/pi-hole-data/etc-dnsmasq.d` | `/etc/dnsmasq.d` | Dnsmasq data. |
+| `/media/Storage/pi-hole-data/etc-pihole` | `/etc/pihole` | Data storeage for pi-hole, config, etc. |
+| `/media/Storage/pi-hole-data/etc-dnsmasq.d` | `/etc/dnsmasq.d` | Dnsmasq data. |
 
 Data for pi-hole is stored in the `/pi-hole-data` host directory.
 
@@ -169,4 +169,10 @@ sudo rsync -rvh /media/Storage/Podcasts /media/Backup1
 
 ```#!/bin/bash
 sudo rsync -rvh --exclude 'media' / /media/Backup1/System
+```
+
+#### Pi-Hole
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/pi-hole-data /media/Backup1
 ```
