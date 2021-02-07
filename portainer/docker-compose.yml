@@ -1,0 +1,12 @@
+version: '3'
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    ports:
+      - "9000:9000"
+      - "8000:8000"
+    volumes:
+      - portainer_data:/data
+    network_mode: bridge
+volumes:
+  portainer_data:
