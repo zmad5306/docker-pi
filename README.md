@@ -202,3 +202,9 @@ sudo rsync -rvh /media/Storage/pi-hole-data /media/Backup1
 ```#!/bin/bash
 sudo cp /etc/samba/smb.conf /media/Backup1/samba/smb.conf
 ```
+
+#### Portainer
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/portainer /media/Backup1
+```
