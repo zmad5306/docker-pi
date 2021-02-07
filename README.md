@@ -118,6 +118,27 @@ docker-compose up -d
 * [Create Bitwarden SSL Certificate](https://github.com/dani-garcia/bitwarden_rs/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome)
 * [Install Nextcloud](https://www.youtube.com/watch?v=CHWHQFwxFcE)
 
+## Portainer
+
+Docker compose files for Portainer docker managment. To run:
+
+```#!/bin/bash
+cd portainer
+docker-compose up -d
+```
+
+### Volumes
+
+| Path on Host | Path on Container | Description |
+| --- | --- | --- |
+| `/var/run/docker.sock` | `/var/run/docker.sock` | The volume to monitor. |
+
+### Docker Volumes
+
+| Volume Name | Path on Container | Description |
+| --- | --- | --- |
+| `portainer_data` | `/data` | Emby Mediaserver configuration. |
+
 ### Backups
 
 Backup instructions for PI host.
