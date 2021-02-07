@@ -131,13 +131,8 @@ docker-compose up -d
 
 | Path on Host | Path on Container | Description |
 | --- | --- | --- |
-| `/var/run/docker.sock` | `/var/run/docker.sock` | The volume to monitor. |
-
-### Docker Volumes
-
-| Volume Name | Path on Container | Description |
-| --- | --- | --- |
-| `portainer_data` | `/data` | Emby Mediaserver configuration. |
+| `/var/run/docker.sock` | `/var/run/docker.sock` | Docker info to expose. |
+| `/media/Storage/portainer` | `/data` | Portainer data and config. |
 
 ### Backups
 
