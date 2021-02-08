@@ -17,6 +17,12 @@ docker-compose up -d
 docker exec -it pihole pihole -a -p ********
 ```
 
+### Update gravity
+
+```#!/bin/bash
+docker exec -it pihole pihole updateGravity
+```
+
 ### Volumes
 
 | Path on Host | Path on Container | Description |
