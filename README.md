@@ -6,7 +6,7 @@ Docker compose files and notes for my PI.
 
 ### Certificate Authority
 
-To generate new CA, **WARNING will required CA cert to be reinstalled on all devices**, this is should not normally be required.
+To generate new CA, **WARNING will require CA cert to be reinstalled on all devices**, this is should not normally be required.
 
 ```#!/bin/bash
 openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
