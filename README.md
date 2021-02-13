@@ -74,8 +74,6 @@ docker exec -it pihole pihole updateGravity
 | `/media/Storage/pi-hole-data/etc-pihole` | `/etc/pihole` | Data storeage for pi-hole, config, etc. |
 | `/media/Storage/pi-hole-data/etc-dnsmasq.d` | `/etc/dnsmasq.d` | Dnsmasq data. |
 
-Data for pi-hole is stored in the `/pi-hole-data` host directory.
-
 ### bit-warden
 
 Docker compose files for Bitwarden. To run:
