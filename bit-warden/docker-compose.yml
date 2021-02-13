@@ -5,7 +5,7 @@ services:
     container_name: bitwarden
     restart: unless-stopped
     environment: 
-      - 'ROCKET_TLS={certs="/ssl/bitwarden.crt",key="/ssl/bitwarden.key"}'
+      - 'ROCKET_TLS={certs="/ssl/pi4-01.crt",key="/ssl/pi4-01.key"}'
     ports: 
       - 8080:80
     volumes: 
