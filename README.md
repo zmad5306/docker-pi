@@ -2,6 +2,16 @@
 
 Docker compose files and notes for my PI.
 
+## Certificates
+
+To generate new certificate, ssh to pi and:
+
+```#!/bin/bash
+cd ~/certs
+openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 365 -sha256 -extfile bitwarden.ext
+sudo mv pi4-01.crt pi4-01.key /etc/ssl/certs
+```
+
 ## pi-hole
 
 Docker compose files for pi-hole. To run:
