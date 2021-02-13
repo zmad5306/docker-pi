@@ -184,6 +184,7 @@ POSTGRES_PASSWORD=******** docker-compose up -d
 | `/media/Storage/nextcloud/html` | `/var/www/html` | Web server content. |
 | `/media/Storage/protonmail` | `/root` | Storage for Protonmail Bridge config. |
 | `/media/Storage/nextcloud/nginx/nginx.conf` | `/etc/nginx/nginx.conf` | nginx config file for reverse proxy |
+| `/etc/ssl/certs` | `/ssl` | SSL certs for Nginx reverse proxy |
 
 #### Utilities
 
