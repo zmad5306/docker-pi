@@ -53,9 +53,9 @@ Docker compose files for pi-hole. To run:
 ```#!/bin/bash
 cd pi-hole
 docker-compose up -d
-````
+```
 
-### Setting admin password
+#### Setting admin password
 
 ```#!/bin/bash
 docker exec -it pihole pihole -a -p ********
