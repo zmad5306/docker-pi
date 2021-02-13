@@ -2,9 +2,11 @@
 
 Docker compose files and notes for my PI.
 
-## Certificates
+## Host (Raspberry PI)
 
-### Certificate Authority
+### Certificates
+
+#### Certificate Authority
 
 To generate new CA, **WARNING will require CA cert to be reinstalled on all devices**, this is should not normally be required.
 
@@ -29,7 +31,7 @@ DNS.2 = www.pi4-01.local
 IP.1 = 192.168.254.249
 ```
 
-### Certificate
+#### Certificate
 
 To generate new certificate (required annually):
 
@@ -39,7 +41,77 @@ openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-c
 sudo mv pi4-01.crt pi4-01.key /etc/ssl/certs
 ```
 
-## Services
+### Backups
+
+Backup instructions for PI host.
+
+#### Mount backup drive
+
+```#!/bin/bash
+sudo mount -t auto /dev/sdb1 /media/Backup1
+```
+
+#### Bitwarden
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/bw-data /media/Backup1
+```
+
+#### Music
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/Music /media/Backup1
+```
+
+#### Nextcloud
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/nextcloud /media/Backup1
+```
+
+#### Protonmail
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/protonmail /media/Backup1
+```
+
+#### Emby
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/emby /media/Backup1
+```
+
+#### Dropbox
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/Dropbox /media/Backup1
+```
+
+#### Podcasts
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/Podcasts /media/Backup1
+```
+
+#### Pi-Hole
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/pi-hole-data /media/Backup1
+```
+
+#### SAMBA
+
+```#!/bin/bash
+sudo cp /etc/samba/smb.conf /media/Backup1/samba/smb.conf
+```
+
+#### Portainer
+
+```#!/bin/bash
+sudo rsync -rvh /media/Storage/portainer /media/Backup1
+```
+
+## Docker Services
 
 These services run in docker and are installed with Docker Compose. Docker and Docker Compose must first be setup on the host.
 
@@ -182,73 +254,3 @@ docker-compose up -d
 | --- | --- | --- |
 | `/var/run/docker.sock` | `/var/run/docker.sock` | Docker info to expose. |
 | `/media/Storage/portainer` | `/data` | Portainer data and config. |
-
-## Backups
-
-Backup instructions for PI host.
-
-### Mount backup drive
-
-```#!/bin/bash
-sudo mount -t auto /dev/sdb1 /media/Backup1
-```
-
-### Bitwarden
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/bw-data /media/Backup1
-```
-
-### Music
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/Music /media/Backup1
-```
-
-### Nextcloud
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/nextcloud /media/Backup1
-```
-
-### Protonmail
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/protonmail /media/Backup1
-```
-
-### Emby
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/emby /media/Backup1
-```
-
-### Dropbox
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/Dropbox /media/Backup1
-```
-
-### Podcasts
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/Podcasts /media/Backup1
-```
-
-### Pi-Hole
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/pi-hole-data /media/Backup1
-```
-
-### SAMBA
-
-```#!/bin/bash
-sudo cp /etc/samba/smb.conf /media/Backup1/samba/smb.conf
-```
-
-### Portainer
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/portainer /media/Backup1
-```
