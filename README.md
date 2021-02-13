@@ -31,7 +31,7 @@ IP.1 = 192.168.254.249
 
 ### Certificate
 
-To generate new certificate, ssh to pi and:
+To generate new certificate (required annually):
 
 ```#!/bin/bash
 cd ~/certs
