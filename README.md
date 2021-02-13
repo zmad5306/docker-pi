@@ -39,6 +39,7 @@ To generate new certificate (required annually):
 cd ~/certs
 openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 365 -sha256 -extfile bitwarden.ext
 sudo mv pi4-01.crt pi4-01.key /etc/ssl/certs
+sudo cp self-signed-ca-cert.crt /etc/ssl/certs
 ```
 
 ### Backups
@@ -168,7 +169,16 @@ docker-compose up -d
 
 ### nextcloud
 
-Docker compose files for Bitwarden. To run:
+Docker compose files for Bitwarden. 
+
+Setup Nginx config:
+
+```#!/bin/bash
+cd nextcloud
+sudo cp nginx.conf /media/Storage/nextcloud/nginx/
+```
+
+To run:
 
 ```#!/bin/bash
 cd nextcloud
