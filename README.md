@@ -9,11 +9,12 @@ Docker compose files and notes for my PI.
 To generate new CA, **WARNING will require CA cert to be reinstalled on all devices**, this is should not normally be required.
 
 ```#!/bin/bash
+cd ~/certs
 openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 openssl req -new -key bitwarden.key -out bitwarden.csr
 ```
 
-Create `pi4-01.ext` file in ~/certs:
+Create `pi4-01.ext` file in `~/certs`:
 
 ```
 authorityKeyIdentifier=keyid,issuer
