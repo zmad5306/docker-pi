@@ -211,9 +211,23 @@ First run needs to be started with `docker run --rm -it -v /media/Storage/proton
 
 To make the self-signed cert for the mail bridge work add `'mail_smtpstreamoptions' => array( 'ssl' => array( 'allow_self_signed' => true, 'verify_peer' => false, 'verify_peer_name' => false ) ),` to the Nextcloud config in `/media/Storage/nextcloud/html/config/config.php`, see [Additional settings Email configuration - SOLVED](https://help.nextcloud.com/t/additional-settings-email-configuration-solved/22070) for more info.
 
+#### Nginx Reverse Proxy for HTTPS
+
+Make the following configs in `/media/Storage/nextcloud/html/config/config.php`. More details can be found in: [BobyMCbobs/nextcloud-docker-nginx-reverse-proxy](https://github.com/BobyMCbobs/nextcloud-docker-nginx-reverse-proxy).
+
+```
+'overwritehost' => '192.168.254.249:8082',
+  'overwriteprotocol' => 'https',
+  'trusted_proxies' =>
+  array (
+    0 => 'nginx-proxy'
+  ),
+```
+
 #### Notes
 
 * [Install Nextcloud](https://www.youtube.com/watch?v=CHWHQFwxFcE)
+* Connect to Dav @ `https://<host>:8082/remote.php/dav`.
 
 ### Emby
 
