@@ -19,9 +19,22 @@ services:
       - 8082:80
     depends_on: 
       - postgres
+      - protonmail-bridge
   protonmail-bridge: 
     image: shenxn/protonmail-bridge:1.4.5-build
     container_name: protonmail-bridge
     restart: unless-stopped
     volumes:
       - /media/Storage/protonmail:/root
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    restart: unless-stopped
+    volumes: 
+      - /media/Storage/nextcloud/nginx/nginx.conf:ro
+      - /etc/ssl/certs:/ssl
+    ports: 
+      - 9999:443
+      - 9998:80
+    depends_on: 
+      - nextcloud
