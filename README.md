@@ -169,7 +169,7 @@ docker-compose up -d
 
 ### nextcloud
 
-Docker compose files for Bitwarden. 
+Docker compose files for Nextcloud. 
 
 Setup Nginx config:
 
