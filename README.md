@@ -142,7 +142,7 @@ docker exec -it pihole pihole updateGravity
 
 #### Schedule update gravity with cron
 
-Execute `sudo crontab -l` to open cron editor and add:
+Execute `sudo crontab -e` to open cron editor and add:
 
 ```#!/bin/bash
 # Update pihole gravity every Sunday at midnight
