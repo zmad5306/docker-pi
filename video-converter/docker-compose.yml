@@ -1,7 +1,7 @@
 version: '3'
 services: 
   emby-video-converter: 
-    image: zmad5306/video-converter:latest
+    image: zmad5306/video-converter:1.0.3
     container_name: video-converter
     restart: unless-stopped
     volumes:
