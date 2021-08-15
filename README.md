@@ -67,7 +67,7 @@ sudo rsync -rvh /media/Storage/Music /media/Backup1
 #### Nextcloud
 
 ```#!/bin/bash
-sudo rsync -rvh /media/Storage/nextcloud /media/Backup1
+sudo rsync -rvh /media/Storage/nextcloud_new /media/Backup1
 ```
 
 #### Protonmail
@@ -184,14 +184,14 @@ Setup Nginx config:
 
 ```#!/bin/bash
 cd nextcloud
-sudo cp nginx.conf /media/Storage/nextcloud/nginx/
+sudo cp nginx.conf /media/Storage/nextcloud_new/nginx/
 ```
 
 To run:
 
 ```#!/bin/bash
 cd nextcloud
-sudo chown -R www-data:www-data /media/Storage/nextcloud
+sudo chown -R www-data:www-data /media/Storage/nextcloud_new
 POSTGRES_PASSWORD=******** docker-compose up -d
 ```
 
@@ -199,11 +199,11 @@ POSTGRES_PASSWORD=******** docker-compose up -d
 
 | Path on Host | Path on Container | Description |
 | --- | --- | --- |
-| `/media/Storage/nextcloud/db` | `/var/lib/postgresql/data` | Postgres database. |
-| `/media/Storage/nextcloud/data` | `/data` | Main data store. |
-| `/media/Storage/nextcloud/html` | `/var/www/html` | Web server content. |
+| `/media/Storage/nextcloud_new/db` | `/var/lib/postgresql/data` | Postgres database. |
+| `/media/Storage/nextcloud_new/data` | `/data` | Main data store. |
+| `/media/Storage/nextcloud_new/html` | `/var/www/html` | Web server content. |
 | `/media/Storage/protonmail` | `/root` | Storage for Protonmail Bridge config. |
-| `/media/Storage/nextcloud/nginx/nginx.conf` | `/etc/nginx/nginx.conf` | nginx config file for reverse proxy |
+| `/media/Storage/nextcloud_new/nginx/nginx.conf` | `/etc/nginx/nginx.conf` | nginx config file for reverse proxy |
 | `/etc/ssl/certs` | `/ssl` | SSL certs for Nginx reverse proxy |
 
 #### Utilities
@@ -219,11 +219,11 @@ First run needs to be started with `docker run --rm -it -v /media/Storage/proton
 - [ProtonMail IMAP/SMTP Bridge Docker Container](https://github.com/shenxn/protonmail-bridge-docker)
 - [Bridge CLI (command line interface) guide](https://protonmail.com/support/knowledge-base/bridge-cli-guide/)
 
-To make the self-signed cert for the mail bridge work add `'mail_smtpstreamoptions' => array( 'ssl' => array( 'allow_self_signed' => true, 'verify_peer' => false, 'verify_peer_name' => false ) ),` to the Nextcloud config in `/media/Storage/nextcloud/html/config/config.php`, see [Additional settings Email configuration - SOLVED](https://help.nextcloud.com/t/additional-settings-email-configuration-solved/22070) for more info.
+To make the self-signed cert for the mail bridge work add `'mail_smtpstreamoptions' => array( 'ssl' => array( 'allow_self_signed' => true, 'verify_peer' => false, 'verify_peer_name' => false ) ),` to the Nextcloud config in `/media/Storage/nextcloud_new/html/config/config.php`, see [Additional settings Email configuration - SOLVED](https://help.nextcloud.com/t/additional-settings-email-configuration-solved/22070) for more info.
 
 #### Nginx Reverse Proxy for HTTPS
 
-Make the following configs in `/media/Storage/nextcloud/html/config/config.php`. More details can be found in: [BobyMCbobs/nextcloud-docker-nginx-reverse-proxy](https://github.com/BobyMCbobs/nextcloud-docker-nginx-reverse-proxy).
+Make the following configs in `/media/Storage/nextcloud_new/html/config/config.php`. More details can be found in: [BobyMCbobs/nextcloud-docker-nginx-reverse-proxy](https://github.com/BobyMCbobs/nextcloud-docker-nginx-reverse-proxy).
 
 ```
 'overwritehost' => '192.168.254.249:8082',
