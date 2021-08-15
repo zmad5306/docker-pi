@@ -255,7 +255,7 @@ Create user for emby and grant access. Add `pi` user to `emby` group so SMB can 
 ```#!/bin/bash
 sudo useradd -m -G emby embyuser
 sudo chgrp emby /media/Storage/Video/YouTube/Movies/NewPipe/
-sudo chown embyuser /media/Storage/Video/YouTube/Movies/NewPipe/
+sudo chown emby /media/Storage/Video/YouTube/Movies/NewPipe/
 sudo usermod -g emby pi
 ```
 
