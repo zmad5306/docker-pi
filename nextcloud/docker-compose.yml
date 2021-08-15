@@ -1,7 +1,7 @@
 version: '3'
 services: 
   postgres: 
-    image: postgres:latest
+    image: postgres:9.6.23
     container_name: postgres
     restart: unless-stopped
     volumes:
@@ -25,7 +25,7 @@ services:
     volumes:
       - /media/Storage/protonmail:/root
   nginx-proxy:
-    image: nginx:latest
+    image: nginx:1.21.1
     container_name: nginx-proxy
     restart: unless-stopped
     volumes: 
