@@ -250,12 +250,13 @@ Change trusted domains:
 
 ### Emby
 
-Create user for emby and grant access:
+Create user for emby and grant access. Add `pi` user to `emby` group so SMB can still write.
 
 ```#!/bin/bash
 sudo useradd -m -G emby embyuser
 sudo chgrp emby /media/Storage/Video/YouTube/Movies/NewPipe/
 sudo chown embyuser /media/Storage/Video/YouTube/Movies/NewPipe/
+sudo usermod -g emby pi
 ```
 
 Find `embyuser`'s `UID` and `GID` by running `cat /etc/passwd`.
