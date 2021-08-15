@@ -268,21 +268,7 @@ docker-compose up -d
 | `/media/Storage/Video/YouTube` | `/data/video/youtube` | YouTube videos. |
 | `/media/Storage/Music` | `/data/audio/music` | Music. |
 | `/media/Storage/Podcasts` | `/data/audio/podcasts` | Podcasts. |
-
-### Video Converter
-
-To run:
-
-```#!/bin/bash
-cd video-converter
-docker-compose up -d
-```
-
-#### Volumes
-
-| Path on Host | Path on Container | Description |
-| --- | --- | --- |
-| `/media/Storage/Video/YouTube/Movies/NewPipe` | `/vids` | The volume to monitor. |
+| `/media/Storage/Video/YouTube/Movies/NewPipe` | `/vids` | The volume to monitor for mp4 to mkv conversion. |
 
 ### Portainer
 

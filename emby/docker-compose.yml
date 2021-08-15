@@ -17,3 +17,9 @@ services:
       - 8096:8096
       - 8920:8920
       - 1900:1900/udp
+  emby-video-converter:
+    image: zmad5306/video-converter:1.0.3
+    container_name: video-converter
+    restart: unless-stopped
+    volumes:
+      - /media/Storage/Video/YouTube/Movies/NewPipe:/vids
