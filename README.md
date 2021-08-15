@@ -191,6 +191,7 @@ To run:
 
 ```#!/bin/bash
 cd nextcloud
+sudo chown -R www-data:www-data /media/Storage/nextcloud
 POSTGRES_PASSWORD=******** docker-compose up -d
 ```
 
@@ -230,6 +231,15 @@ Make the following configs in `/media/Storage/nextcloud/html/config/config.php`.
   'trusted_proxies' =>
   array (
     0 => 'nginx-proxy'
+  ),
+```
+
+Change trusted domains:
+
+  ```
+'trusted_domains' => 
+  array (
+    0 => '192.168.254.249:8082',
   ),
 ```
 
