@@ -18,8 +18,8 @@ services:
       - 8920:8920
       - 1900:1900/udp
     environment:
-      - UID=$UID
-      - GID=$GID
+      - UID=$USER_ID
+      - GID=$GROUP_ID
   emby-video-converter:
     image: zmad5306/video-converter:1.0.3
     container_name: video-converter

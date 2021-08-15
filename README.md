@@ -264,7 +264,7 @@ Docker compose files for Emby media server. To run:
 
 ```#!/bin/bash
 cd emby
-UID=**** GID=**** docker-compose up -ddocker-compose up -d
+USER_ID=**** GROUP_ID=**** docker-compose up -ddocker-compose up -d
 ```
 #### Volumes
 
