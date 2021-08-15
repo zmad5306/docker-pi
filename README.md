@@ -250,11 +250,21 @@ Change trusted domains:
 
 ### Emby
 
+Create user for emby and grant access:
+
+```#!/bin/bash
+sudo useradd -m -G emby embyuser
+sudo chgrp emby /media/Storage/Video/YouTube/Movies/NewPipe/
+sudo chown embyuser /media/Storage/Video/YouTube/Movies/NewPipe/
+```
+
+Find `embyuser`'s `UID` and `GID` by running `cat /etc/passwd`.
+
 Docker compose files for Emby media server. To run:
 
 ```#!/bin/bash
 cd emby
-docker-compose up -d
+UID=**** GID=**** docker-compose up -ddocker-compose up -d
 ```
 #### Volumes
 
