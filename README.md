@@ -255,11 +255,11 @@ Create user for emby and grant access. Add `pi` user to `emby` group so SMB can 
 ```#!/bin/bash
 sudo useradd -m -G emby embyuser
 sudo chgrp emby /media/Storage/Video/YouTube/Movies/NewPipe/
-sudo chown embyuser /media/Storage/Video/YouTube/Movies/NewPipe/
+sudo chmod g+rwx /media/Storage/Video/YouTube/Movies/NewPipe/
 sudo usermod -g emby pi
 ```
 
-Find `embyuser`'s `UID` and `GID` by running `cat /etc/passwd`.
+Find `emby`'s `UID` and `GID` by running `cat /etc/passwd`. Use `UID` of the `embyuser` user and `GID` of `emby` group.
 
 Docker compose files for Emby media server. To run:
 
