@@ -67,7 +67,7 @@ sudo rsync -rvh /media/Storage/Music /media/Backup1
 #### Nextcloud
 
 ```#!/bin/bash
-sudo rsync -rvh /media/Storage/nextcloud_new /media/Backup1
+sudo rsync -rvh /media/Storage/nextcloud /media/Backup1
 ```
 
 #### Protonmail
@@ -184,14 +184,14 @@ Setup Nginx config:
 
 ```#!/bin/bash
 cd nextcloud
-sudo cp nginx.conf /media/Storage/nextcloud_new/nginx/
+sudo cp nginx.conf /media/Storage/nextcloud/nginx/
 ```
 
 To run:
 
 ```#!/bin/bash
 cd nextcloud
-sudo chown -R www-data:www-data /media/Storage/nextcloud_new
+sudo chown -R www-data:www-data /media/Storage/nextcloud
 POSTGRES_PASSWORD=******** docker-compose up -d
 ```
 
@@ -199,11 +199,11 @@ POSTGRES_PASSWORD=******** docker-compose up -d
 
 | Path on Host | Path on Container | Description |
 | --- | --- | --- |
-| `/media/Storage/nextcloud_new/db` | `/var/lib/postgresql/data` | Postgres database. |
-| `/media/Storage/nextcloud_new/data` | `/data` | Main data store. |
-| `/media/Storage/nextcloud_new/html` | `/var/www/html` | Web server content. |
+| `/media/Storage/nextcloud/db` | `/var/lib/postgresql/data` | Postgres database. |
+| `/media/Storage/nextcloud/data` | `/data` | Main data store. |
+| `/media/Storage/nextcloud/html` | `/var/www/html` | Web server content. |
 | `/media/Storage/protonmail` | `/root` | Storage for Protonmail Bridge config. |
-| `/media/Storage/nextcloud_new/nginx/nginx.conf` | `/etc/nginx/nginx.conf` | nginx config file for reverse proxy |
+| `/media/Storage/nextcloud/nginx/nginx.conf` | `/etc/nginx/nginx.conf` | nginx config file for reverse proxy |
 | `/etc/ssl/certs` | `/ssl` | SSL certs for Nginx reverse proxy |
 
 #### Utilities
