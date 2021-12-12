@@ -5,7 +5,7 @@ services:
     container_name: postgres
     restart: unless-stopped
     volumes:
-      - /media/Storage/nextcloud_new/db:/var/lib/postgresql/data
+      - /media/Storage/nextcloud/db:/var/lib/postgresql/data
     environment: 
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
   nextcloud:
