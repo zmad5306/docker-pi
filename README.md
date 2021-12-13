@@ -219,7 +219,22 @@ First run needs to be started with `docker run --rm -it -v /media/Storage/proton
 - [ProtonMail IMAP/SMTP Bridge Docker Container](https://github.com/shenxn/protonmail-bridge-docker)
 - [Bridge CLI (command line interface) guide](https://protonmail.com/support/knowledge-base/bridge-cli-guide/)
 
-To make the self-signed cert for the mail bridge work add `'mail_smtpstreamoptions' => array( 'ssl' => array( 'allow_self_signed' => true, 'verify_peer' => false, 'verify_peer_name' => false ) ),` to the Nextcloud config in `/media/Storage/nextcloud/html/config/config.php`, see [Additional settings Email configuration - SOLVED](https://help.nextcloud.com/t/additional-settings-email-configuration-solved/22070) for more info.
+To make the self-signed cert for the mail bridge work add 
+
+```
+'mail_smtpstreamoptions' => 
+  array( 
+    'ssl' => array( 
+      'allow_self_signed' => true, 
+      'verify_peer' => false, 
+      'verify_peer_name' => false 
+      ) 
+  ),
+```
+
+to the Nextcloud config in `/media/Storage/nextcloud/html/config/config.php`
+
+see [Additional settings Email configuration - SOLVED](https://help.nextcloud.com/t/additional-settings-email-configuration-solved/22070) for more info.
 
 #### Nginx Reverse Proxy for HTTPS
 
@@ -240,6 +255,8 @@ Change trusted domains:
 'trusted_domains' => 
   array (
     0 => '192.168.254.249:8082',
+    1 => 'nginx-proxy',
+    2 => '192.168.254.249'
   ),
 ```
 
