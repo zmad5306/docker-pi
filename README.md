@@ -12,8 +12,8 @@ To generate new CA, **WARNING will require CA cert to be reinstalled on all devi
 
 ```#!/bin/bash
 cd ~/certs
-openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
-openssl req -new -key bitwarden.key -out bitwarden.csr
+openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
+openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-signed-ca-cert.crt
 ```
 
 Create `pi4-01.ext` file in `~/certs`:
@@ -36,9 +36,15 @@ IP.1 = 192.168.254.249
 To generate new certificate (required annually):
 
 ```#!/bin/bash
-cd ~/certs
-openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 365 -sha256 -extfile bitwarden.ext
-sudo mv pi4-01.crt pi4-01.key /etc/ssl/certs
+openssl genpkey -algorithm RSA -out pi4-01.key -outform PEM -pkeyopt rsa_keygen_bits:2048
+openssl req -new -key pi4-01.key -out pi4-01.csr
+openssl x509 -req -in pi4-01.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out pi4-01.crt -days 365 -sha256 -extfile pi4-01.ext
+```
+
+##### Install Certificate
+
+```#!/bin/bash
+sudo cp pi4-01.crt pi4-01.key /etc/ssl/certs
 sudo cp self-signed-ca-cert.crt /etc/ssl/certs
 ```
 
