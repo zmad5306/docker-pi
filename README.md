@@ -35,10 +35,18 @@ IP.1 = 192.168.254.249
 
 To generate new certificate (required annually):
 
+##### Nextcloud
+
 ```#!/bin/bash
-openssl genpkey -algorithm RSA -out pi4-01.key -outform PEM -pkeyopt rsa_keygen_bits:2048
-openssl req -new -key pi4-01.key -out pi4-01.csr
-openssl x509 -req -in pi4-01.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out pi4-01.crt -days 365 -sha256 -extfile pi4-01.ext
+openssl x509 -req -in nextcloud.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out nextcloud.crt -days 365 -sha256 -extfile nextcloud.ext
+sudo cp nextcloud.crt /etc/ssl/certs
+```
+
+##### Bitwarden
+
+```#!/bin/bash
+openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 365 -sha256 -extfile bitwarden.ext
+sudo cp bitwarden.crt /etc/ssl/certs
 ```
 
 ##### Install Certificate
