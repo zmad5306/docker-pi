@@ -11,4 +11,4 @@ services:
     volumes: 
       - /media/Storage/bw-data:/data
       - /etc/ssl/certs:/ssl
-
+    privileged: true
