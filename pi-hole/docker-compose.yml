@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     environment: 
       - TZ="America/New_York"
-      - ServerIP: 192.168.254.249
+      - ServerIP: '192.168.254.249'
     ports: 
       - 53:53/tcp
       - 53:53/udp
