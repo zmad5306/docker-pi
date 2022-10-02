@@ -1,16 +1,14 @@
 version: '3'
 services:
   pihole:
-    image: pihole/pihole:2022.09.4
+    image: pihole/pihole:2021.11
     container_name: pihole
     restart: unless-stopped
     environment: 
       - TZ="America/New_York"
-      - ServerIP="192.168.254.249"
     ports: 
       - 53:53/tcp
       - 53:53/udp
-      - 67:67/udp
       - 8081:80
       - 8443:443
     volumes: 
@@ -19,6 +17,3 @@ services:
     dns: 
       - 127.0.0.1
       - 1.1.1.1
-    networks:
-      lan:
-        ipv4_address: 192.168.254.249
