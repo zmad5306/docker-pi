@@ -1,7 +1,7 @@
 version: '3'
 services: 
   bitwarden:
-    image: vaultwarden/server:1.25.2
+    image: vaultwarden/server:1.25.2-arm32v6
     container_name: bitwarden
     restart: unless-stopped
     environment: 
