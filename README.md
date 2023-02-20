@@ -28,7 +28,7 @@ subjectAltName = @alt_names
 [alt_names]
 DNS.1 = pi4-01.local
 DNS.2 = www.pi4-01.local
-IP.1 = 192.168.254.249
+IP.1 = <pi ip>
 ```
 
 #### Certificate
@@ -190,6 +190,27 @@ docker-compose up -d
 
 * [Create Bitwarden SSL Certificate](https://github.com/dani-garcia/bitwarden_rs/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome)
 
+##### Cloud Backup File
+
+On Pi
+
+```#!/bin/bash
+cd /media/Storage
+sudo tar cz bw-data | openssl enc -aes-256-cbc -e > bw-data.tar.gz.enc
+```
+
+On workstation
+
+```#!/bin/bash
+scp <user>@<pi ip>:/media/Storage/bw-data.tar.gz.enc .
+```
+
+Decrypt
+
+```#!/bin/bash
+openssl enc -aes-256-cbc -d -in bw-data.tar.gz.enc | tar xz
+```
+
 ### nextcloud
 
 Docker compose files for Nextcloud. 
@@ -255,7 +276,7 @@ see [Additional settings Email configuration - SOLVED](https://help.nextcloud.co
 Make the following configs in `/media/Storage/nextcloud/html/config/config.php`. More details can be found in: [BobyMCbobs/nextcloud-docker-nginx-reverse-proxy](https://github.com/BobyMCbobs/nextcloud-docker-nginx-reverse-proxy).
 
 ```
-'overwritehost' => '192.168.254.249:8082',
+'overwritehost' => '<pi ip>:8082',
   'overwriteprotocol' => 'https',
   'trusted_proxies' =>
   array (
@@ -268,9 +289,9 @@ Change trusted domains:
   ```
 'trusted_domains' => 
   array (
-    0 => '192.168.254.249:8082',
+    0 => '<pi ip>:8082',
     1 => 'nginx-proxy',
-    2 => '192.168.254.249'
+    2 => '<pi ip>'
   ),
 ```
 
