@@ -1,7 +1,7 @@
 version: '3'
 services:
   pihole:
-    image: pihole/pihole:2023.02.2
+    image: pihole/pihole:2023.03.1
     container_name: pihole
     restart: unless-stopped
     ports: 
