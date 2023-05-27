@@ -9,7 +9,7 @@ services:
     environment: 
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
   nextcloud:
-    image: nextcloud:25.0.3
+    image: nextcloud:26.0.1
     container_name: nextcloud
     restart: unless-stopped
     volumes: 
