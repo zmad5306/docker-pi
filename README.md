@@ -52,8 +52,12 @@ sudo cp bitwarden.crt /etc/ssl/certs
 ##### Install Certificate
 
 ```#!/bin/bash
-sudo cp pi4-01.crt pi4-01.key /etc/ssl/certs
-sudo cp self-signed-ca-cert.crt /etc/ssl/certs
+cd ~/certs
+sudo cp bitwarden.crt /etc/ssl/certs
+sudo cp bitwarden.key /etc/ssl/certs
+sudo cp nextcloud.crt /etc/ssl/certs
+sudo cp nextcloud.key /etc/ssl/certs
+sudo cp self-signed-ca-cert.crt /etc/ssl/certs/
 ```
 
 ### Backups
