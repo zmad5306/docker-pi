@@ -1,7 +1,7 @@
 version: '3'
 services: 
   emby:
-    image: emby/embyserver_arm32v7:4.8.0.37
+    image: emby/embyserver:4.8.0.37
     container_name: emby
     restart: unless-stopped
     volumes: 
@@ -13,10 +13,7 @@ services:
       - /media/Storage/Video/YouTube:/data/video/youtube
       - /media/Storage/Music:/data/audio/music
       - /media/Storage/Podcasts:/data/audio/podcasts
-    ports: 
-      - 8096:8096
-      - 8920:8920
-      - 1900:1900/udp
+      - /etc/ssl/certs:/certs
     environment:
       - UID=$USER_ID
       - GID=$GROUP_ID
@@ -26,3 +23,14 @@ services:
     restart: unless-stopped
     volumes:
       - /media/Storage/Video/YouTube/Movies/NewPipe:/vids
+  emby-proxy:
+    image: nginx:1.21.1
+    container_name: emby-proxy
+    restart: unless-stopped
+    volumes:
+      - /media/Storage/emby/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/ssl/certs:/ssl
+    ports:
+      - 8096:443
+    depends_on:
+      - emby
