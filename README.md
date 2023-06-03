@@ -2,7 +2,7 @@
 
 Docker compose files and notes for my PI.
 
-## Host (Raspberry PI)
+## Server 
 
 ### Certificates
 
@@ -107,7 +107,7 @@ openssl enc -aes-256-cbc -d -in ca.tar.gz.enc | tar xz
 ```#!/bin/bash
 sudo apt update
 sudo apt install samba
-  sudo nano /etc/samba/smb.conf
+sudo nano /etc/samba/smb.conf
 sudo service smbd restart
 sudo ufw allow samba
 sudo smbpasswd -a username
