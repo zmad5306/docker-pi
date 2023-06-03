@@ -1,17 +1,26 @@
 version: '3'
 services:
   pihole:
-    image: pihole/pihole:2023.03.1
+    image: pihole/pihole:2023.05.2
     container_name: pihole
     restart: unless-stopped
     ports: 
       - 53:53/tcp
       - 53:53/udp
-      - 8081:80
-      - 8443:443
     volumes: 
       - /media/Storage/pi-hole-data/etc-pihole/:/etc/pihole/
       - /media/Storage/pi-hole-data/etc-dnsmasq.d/:/etc/dnsmasq.d/
     dns: 
       - 127.0.0.1
       - 1.1.1.1
+  pihole-proxy:
+    image: nginx:1.21.1
+    container_name: pihole-proxy
+    restart: unless-stopped
+    volumes:
+      - /media/Storage/pihole/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/ssl/certs:/ssl
+    ports:
+      - 8081:443
+    depends_on:
+      - pihole

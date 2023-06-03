@@ -2,36 +2,11 @@
 
 Docker compose files and notes for my PI.
 
-## Host (Raspberry PI)
+## Server 
 
 ### Certificates
 
-#### Certificate Authority
-
-To generate new CA, **WARNING will require CA cert to be reinstalled on all devices**, this is should not normally be required.
-
-```#!/bin/bash
-cd ~/certs
-openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
-openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-signed-ca-cert.crt
-```
-
-Create `pi4-01.ext` file in `~/certs`:
-
-```
-authorityKeyIdentifier=keyid,issuer
-basicConstraints=CA:FALSE
-keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
-extendedKeyUsage = serverAuth
-subjectAltName = @alt_names
-
-[alt_names]
-DNS.1 = pi4-01.local
-DNS.2 = www.pi4-01.local
-IP.1 = <pi ip>
-```
-
-#### Certificate
+#### Annual Renewal
 
 To generate new certificate (required annually):
 
@@ -49,95 +24,132 @@ openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-c
 sudo cp bitwarden.crt /etc/ssl/certs
 ```
 
-##### Install Certificate
+##### Pihole
 
 ```#!/bin/bash
-cd ~/certs
-sudo cp bitwarden.crt /etc/ssl/certs
-sudo cp bitwarden.key /etc/ssl/certs
-sudo cp nextcloud.crt /etc/ssl/certs
-sudo cp nextcloud.key /etc/ssl/certs
-sudo cp self-signed-ca-cert.crt /etc/ssl/certs/
+openssl x509 -req -in pihole.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out pihole.crt -days 365 -sha256 -extfile pihole.ext
+sudo cp pihole.crt /etc/ssl/certs
+```
+
+##### Emby
+
+```#!/bin/bash
+openssl x509 -req -in emby.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out emby.crt -days 365 -sha256 -extfile emby.ext
+sudo cp pihole.crt /etc/ssl/certs
+```
+
+#### Generate Certificate for New Service
+
+Cerate `<service name>.ext` file by copying one from another service and modifying.
+
+```#!/bin/bash
+openssl genrsa -out <service name>.key 2048
+openssl req -key <service name>.key -new -out <service name>.csr
+openssl x509 -req -in <service name>.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out <service name>.crt -days 365 -sha256 -extfile <service name>.ext
+sudo cp <service name>.crt /etc/ssl/certs
 ```
 
 ### Backups
 
+#### Storage
+
 Backup instructions for PI host.
 
-#### Mount backup drive
-
 ```#!/bin/bash
-sudo mount -t auto /dev/sdb1 /media/Backup1
+sudo mount -t auto /dev/sdb /media/Backup
+sudo rsync -rvh /media/Storage/ /media/Backup/backups/server-01/
 ```
 
 #### Bitwarden
 
+##### Cloud Backup File
+
+On Server
+
 ```#!/bin/bash
-sudo rsync -rvh /media/Storage/bw-data /media/Backup1
+cd /media/Storage
+sudo tar cz bw-data | openssl enc -aes-256-cbc -e > bw-data.tar.gz.enc
 ```
 
-#### Music
+On workstation
 
 ```#!/bin/bash
-sudo rsync -rvh /media/Storage/Music /media/Backup1
+scp <user>@<server ip>:/media/Storage/bw-data.tar.gz.enc .
 ```
 
-#### Nextcloud
+Decrypt
 
 ```#!/bin/bash
-sudo rsync -rvh /media/Storage/nextcloud /media/Backup1
+openssl enc -aes-256-cbc -d -in bw-data.tar.gz.enc | tar xz
 ```
 
-#### Protonmail
+#### Certificate Authority
 
 ```#!/bin/bash
-sudo rsync -rvh /media/Storage/protonmail /media/Backup1
+cd ~
+sudo tar cz certs | openssl enc -aes-256-cbc -e > ca.tar.gz.enc
 ```
 
-#### Emby
+On workstation
 
 ```#!/bin/bash
-sudo rsync -rvh /media/Storage/emby /media/Backup1
+scp <user>@<server ip>:~/ca.tar.gz.enc .
 ```
 
-#### Dropbox
+Decrypt
 
 ```#!/bin/bash
-sudo rsync -rvh /media/Storage/Dropbox /media/Backup1
+openssl enc -aes-256-cbc -d -in ca.tar.gz.enc | tar xz
 ```
 
-#### Podcasts
+### SAMBA
 
 ```#!/bin/bash
-sudo rsync -rvh /media/Storage/Podcasts /media/Backup1
+sudo apt update
+sudo apt install samba
+sudo nano /etc/samba/smb.conf
+sudo service smbd restart
+sudo ufw allow samba
+sudo smbpasswd -a username
 ```
 
-#### Pi-Hole
+#### Share Config
 
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/pi-hole-data /media/Backup1
 ```
+[Dropbox]
+    comment = Dropbox on Storage
+    path = /media/Storage/Dropbox/
+    read only = no
+    browsable = yes
+    valid users = <a user>
 
-#### SAMBA
+[YouTube]
+    comment = YouTube on Storage
+    path = /media/Storage/Video/YouTube
+    read only = no
+    browsable = yes
+    valid users = <a user>
 
-```#!/bin/bash
-sudo cp /etc/samba/smb.conf /media/Backup1/samba/smb.conf
-```
-
-#### Portainer
-
-```#!/bin/bash
-sudo rsync -rvh /media/Storage/portainer /media/Backup1
+[Music]
+    comment = Music on Storage
+    path = /media/Storage/Music
+    read only = yes
+    browsable = yes
+    valid users = <a user>
 ```
 
 ## Docker Services
 
 These services run in docker and are installed with Docker Compose. Docker and Docker Compose must first be setup on the host.
 
-* [Install docker](https://www.youtube.com/watch?v=eCJA1F72izc)
-* [Install docker compose](https://devdojo.com/bobbyiliev/how-to-install-docker-and-docker-compose-on-raspberry-pi)
-
 ### pi-hole
+
+Setup Nginx config:
+
+```#!/bin/bash
+cd nextcloud
+sudo cp nginx.conf /media/Storage/pihole/nginx/
+```
 
 Docker compose files for pi-hole. To run:
 
@@ -167,13 +179,6 @@ Execute `sudo crontab -e` to open cron editor and add:
 0 0 * * 0 /usr/bin/docker exec -it pihole pihole updateGravity
 ```
 
-#### Volumes
-
-| Path on Host | Path on Container | Description |
-| --- | --- | --- |
-| `/media/Storage/pi-hole-data/etc-pihole` | `/etc/pihole` | Data storeage for pi-hole, config, etc. |
-| `/media/Storage/pi-hole-data/etc-dnsmasq.d` | `/etc/dnsmasq.d` | Dnsmasq data. |
-
 ### bit-warden
 
 Docker compose files for Bitwarden. To run:
@@ -181,38 +186,6 @@ Docker compose files for Bitwarden. To run:
 ```#!/bin/bash
 cd bit-warden
 docker-compose up -d
-```
-
-#### Volumes
-
-| Path on Host | Path on Container | Description |
-| --- | --- | --- |
-| `/media/Storage/bw-data` | `/data` | Bitwarden data files and database. |
-| `/etc/ssl/certs` | `/ssl` | Maps the host's default ssl certificate directory into the container. [Certificate created for Bitwarden](https://github.com/dani-garcia/bitwarden_rs/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome) is stored here. |
-
-#### Notes
-
-* [Create Bitwarden SSL Certificate](https://github.com/dani-garcia/bitwarden_rs/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome)
-
-##### Cloud Backup File
-
-On Pi
-
-```#!/bin/bash
-cd /media/Storage
-sudo tar cz bw-data | openssl enc -aes-256-cbc -e > bw-data.tar.gz.enc
-```
-
-On workstation
-
-```#!/bin/bash
-scp <user>@<pi ip>:/media/Storage/bw-data.tar.gz.enc .
-```
-
-Decrypt
-
-```#!/bin/bash
-openssl enc -aes-256-cbc -d -in bw-data.tar.gz.enc | tar xz
 ```
 
 ### nextcloud
@@ -233,17 +206,6 @@ cd nextcloud
 sudo chown -R www-data:www-data /media/Storage/nextcloud
 POSTGRES_PASSWORD=******** docker-compose up -d
 ```
-
-#### Volumes
-
-| Path on Host | Path on Container | Description |
-| --- | --- | --- |
-| `/media/Storage/nextcloud/db` | `/var/lib/postgresql/data` | Postgres database. |
-| `/media/Storage/nextcloud/data` | `/data` | Main data store. |
-| `/media/Storage/nextcloud/html` | `/var/www/html` | Web server content. |
-| `/media/Storage/protonmail` | `/root` | Storage for Protonmail Bridge config. |
-| `/media/Storage/nextcloud/nginx/nginx.conf` | `/etc/nginx/nginx.conf` | nginx config file for reverse proxy |
-| `/etc/ssl/certs` | `/ssl` | SSL certs for Nginx reverse proxy |
 
 #### Utilities
 
@@ -280,7 +242,7 @@ see [Additional settings Email configuration - SOLVED](https://help.nextcloud.co
 Make the following configs in `/media/Storage/nextcloud/html/config/config.php`. More details can be found in: [BobyMCbobs/nextcloud-docker-nginx-reverse-proxy](https://github.com/BobyMCbobs/nextcloud-docker-nginx-reverse-proxy).
 
 ```
-'overwritehost' => '<pi ip>:8082',
+'overwritehost' => '<server address>:8082',
   'overwriteprotocol' => 'https',
   'trusted_proxies' =>
   array (
@@ -293,16 +255,11 @@ Change trusted domains:
   ```
 'trusted_domains' => 
   array (
-    0 => '<pi ip>:8082',
+    0 => '<server adddress>:8082',
     1 => 'nginx-proxy',
-    2 => '<pi ip>'
+    2 => '<server address>'
   ),
 ```
-
-#### Notes
-
-* [Install Nextcloud](https://www.youtube.com/watch?v=CHWHQFwxFcE)
-* Connect to Dav @ `https://<host>:8082/remote.php/dav`.
 
 ### Emby
 
@@ -323,19 +280,6 @@ Docker compose files for Emby media server. To run:
 cd emby
 USER_ID=**** GROUP_ID=**** docker-compose up -d
 ```
-#### Volumes
-
-| Path on Host | Path on Container | Description |
-| --- | --- | --- |
-| `/media/Storage/emby/config` | `/config` | Emby Mediaserver configuration. |
-| `/media/Storage/Video/Exercise` | `/data/video/exercise` | Exercise videos. |
-| `/media/Storage/Video/KidsMovies` | `/data/video/kidsmovies` | Kids movies. |
-| `/media/Storage/Video/Movies` | `/data/video/movies` | Movies. |
-| `/media/Storage/Video/TV` | `/data/video/tv` | TV shows. |
-| `/media/Storage/Video/YouTube` | `/data/video/youtube` | YouTube videos. |
-| `/media/Storage/Music` | `/data/audio/music` | Music. |
-| `/media/Storage/Podcasts` | `/data/audio/podcasts` | Podcasts. |
-| `/media/Storage/Video/YouTube/Movies/NewPipe` | `/vids` | The volume to monitor for mp4 to mkv conversion. |
 
 ### Portainer
 
@@ -345,10 +289,3 @@ Docker compose files for Portainer docker managment. To run:
 cd portainer
 docker-compose up -d
 ```
-
-#### Volumes
-
-| Path on Host | Path on Container | Description |
-| --- | --- | --- |
-| `/var/run/docker.sock` | `/var/run/docker.sock` | Docker info to expose. |
-| `/media/Storage/portainer` | `/data` | Portainer data and config. |

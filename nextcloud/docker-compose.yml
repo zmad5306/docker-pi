@@ -2,7 +2,7 @@ version: '3'
 services: 
   postgres: 
     image: postgres:13.4
-    container_name: postgres
+    container_name: nextcloud-postgres
     restart: unless-stopped
     volumes:
       - /media/Storage/nextcloud/db:/var/lib/postgresql/data
@@ -20,13 +20,13 @@ services:
       - protonmail-bridge
   protonmail-bridge: 
     image: shenxn/protonmail-bridge:1.4.5-build
-    container_name: protonmail-bridge
+    container_name: nextcloud-protonmail-bridge
     restart: unless-stopped
     volumes:
       - /media/Storage/protonmail:/root
   nginx-proxy:
     image: nginx:1.21.1
-    container_name: nginx-proxy
+    container_name: nextcloud-proxy
     restart: unless-stopped
     volumes: 
       - /media/Storage/nextcloud/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
