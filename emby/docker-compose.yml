@@ -19,7 +19,7 @@ services:
       - GID=$GROUP_ID
   emby-video-converter:
     image: zmad5306/video-converter:1.0.3
-    container_name: video-converter
+    container_name: emby-video-converter
     restart: unless-stopped
     volumes:
       - /media/Storage/Video/YouTube/Movies/NewPipe:/vids
