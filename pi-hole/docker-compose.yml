@@ -13,6 +13,8 @@ services:
     dns: 
       - 127.0.0.1
       - 1.1.1.1
+    environment:
+      - CORS_HOSTS=server-01.local
   pihole-proxy:
     image: nginx:1.21.1
     container_name: pihole-proxy
