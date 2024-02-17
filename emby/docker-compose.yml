@@ -1,7 +1,7 @@
 version: '3'
 services: 
   emby:
-    image: emby/embyserver:4.8.0.61
+    image: emby/embyserver:4.9.0.4
     container_name: emby
     restart: unless-stopped
     volumes: 
