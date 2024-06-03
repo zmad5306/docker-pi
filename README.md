@@ -15,6 +15,7 @@ To generate new certificate (required annually):
 ```#!/bin/bash
 openssl x509 -req -in nextcloud.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out nextcloud.crt -days 365 -sha256 -extfile nextcloud.ext
 sudo cp nextcloud.crt /etc/ssl/certs
+docker restart nextcloud-proxy
 ```
 
 ##### Bitwarden
@@ -22,6 +23,7 @@ sudo cp nextcloud.crt /etc/ssl/certs
 ```#!/bin/bash
 openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 365 -sha256 -extfile bitwarden.ext
 sudo cp bitwarden.crt /etc/ssl/certs
+docker restart bitwarden
 ```
 
 ##### Pihole
@@ -29,6 +31,7 @@ sudo cp bitwarden.crt /etc/ssl/certs
 ```#!/bin/bash
 openssl x509 -req -in pihole.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out pihole.crt -days 365 -sha256 -extfile pihole.ext
 sudo cp pihole.crt /etc/ssl/certs
+docker restart pihole-proxy
 ```
 
 ##### Emby
@@ -36,6 +39,7 @@ sudo cp pihole.crt /etc/ssl/certs
 ```#!/bin/bash
 openssl x509 -req -in emby.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out emby.crt -days 365 -sha256 -extfile emby.ext
 sudo cp pihole.crt /etc/ssl/certs
+docker restart emby-proxy
 ```
 
 #### Generate Certificate for New Service
